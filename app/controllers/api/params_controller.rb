@@ -10,15 +10,33 @@ class Api::ParamsController < ApplicationController
   end
 
   def guess
-    params[:user_guess]
+    number = params[:user_guess].to_i
     answer = 40
-    if params[:user_guess].to_i > answer
+    if number > answer
       @message = "you guessed too high"
-    elsif params[:user_guess].to_i < answer
+    elsif number < answer
       @message = "you guessed too low"
     else
       @message = "you win"
     end
     render 'number_params.json.jb'
+  end
+
+  def segment
+    p params[:first_name]
+    render 'segment.json.jb'
+  end
+
+  def guess_segment
+    number = params[:user_input].to_i
+    answer = 40
+    if number > answer
+      @message = "you guessed too high"
+    elsif number < answer
+      @message = "you guessed too low"
+    else
+      @message = "you win"
+    end
+    render 'guess_a_number_segment.json.jb'
   end
 end
